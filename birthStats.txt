@@ -1,0 +1,4 @@
+	WeightGms	WeightLbs	WeightOzs	LengthCm	LengthIn	HeadCm	HeadIn
+Reed	3980		8		12		53.5		21		37	14.5
+Wesley	2755		6		1		49.5		19.5		34.5	13.5
+Eli	3005		6		10		48.5		19		36	14.25
