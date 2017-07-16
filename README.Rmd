@@ -1,23 +1,32 @@
+---
+output: github_document
+---
 
-Bryan baby stats
-----------------
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "README-"
+)
+```
+
+## Bryan baby stats
 
 Romain Francois's family just welcomed a new addition and he [tweeted a photo of those first few days](https://twitter.com/romain_francois/status/886502077492539394), where baby's trying to get back to their birthweight. It reminded me that I kept records of how much formula our twins were drinking for the first few months. I even made a figure for their baby book. Now ... where did I put all that?
 
 I managed to find the folder, last opened in December 2006, complete with "2006 Jenny" R code and some figures. Would the code still run!?! I had to fix one thing:
 
--   Change absolute paths to relative, because my filesystem is set up differently now. Use the [here](https://krlmlr.github.io/here/) package people!
+  * Change absolute paths to relative, because my filesystem is set up differently now. Use the [here](https://krlmlr.github.io/here/) package people!
 
 My code had zero dependencies, other than R itself, which is why this little exercise went so well.
-
+  
 I got the same PDFs back! That 2006 code is found in [makeFigures.r](makeFigures.r). In hindsight, I must have executed specific lines selectively to develop the plot and then store in different figure formats, because the code for `x11()`, `png()`, and `pdf()` is all up in each others' business. Remember, I *was* sleep deprived.
 
 Below I render the 2006 code, with relative paths and a few well-placed `#`s added, so we get inline figures.
 
-`makeFigures.r`
----------------
+## `makeFigures.r`
 
-``` r
+```{r formulaIntake}
 fIntake <-
   read.csv("formulaIntake.csv")
 
@@ -52,16 +61,11 @@ axis(side = 2)
 legend(x = "bottomright",
        legend = c("Wesley","Eli"),
        col = c(3,4),  lwd = 2, bty = "n", cex = 1.3)
-```
-
-![](README-formulaIntake-1.png)
-
-``` r
 
 #dev.off()
 ```
 
-``` r
+```{r birthStats}
 bStats <- read.table("birthStats.txt")
 
 bData <- as.matrix(bStats[,c("WeightGms","LengthCm","HeadCm")])
@@ -85,11 +89,7 @@ text(bData[,2] + 0.025, foo[,2],
 text(bData[,3] + 0.025, foo[,3],
      labels = paste(bStats$HeadIn,"inches"),
      adj = 0)
-```
-
-![](README-birthStats-1.png)
-
-``` r
 
 #dev.off()
 ```
+
